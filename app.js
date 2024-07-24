@@ -74,7 +74,7 @@ const checkWebsite = async () => {
 };
 
 // 一定時間ごとにチェック
-setInterval(checkWebsite, 20000); // 120秒ごとにチェック
+setInterval(checkWebsite, 120000); // 120秒ごとにチェック
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
