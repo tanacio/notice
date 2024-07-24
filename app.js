@@ -18,7 +18,6 @@ const mailFrom = process.env.MAIL_FROM;
 const mailPass = process.env.MAIL_PASS;
 const mailTo = process.env.MAIL_TO;
 const targetSite = process.env.TARGET_SITE;
-const mailContent = process.env.MAIL_CONTENT;
 
 let previousContent = ''; // 前回の内容を保存する変数
 
@@ -58,7 +57,7 @@ const checkWebsite = async () => {
 
     if (previousContent && previousContent !== currentContent) {
       console.log('Content has changed!');
-      sendEmail('Website Content Changed', mailContent);
+      sendEmail('Website Content Changed', 'The content of the website has changed.');
     } else {
       console.log('No changes detected.');
     }
@@ -70,7 +69,7 @@ const checkWebsite = async () => {
 };
 
 // 一定時間ごとにチェック
-setInterval(checkWebsite, 120000); // 60秒ごとにチェック
+setInterval(checkWebsite, 120000); // 120秒ごとにチェック
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
