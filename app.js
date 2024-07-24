@@ -53,7 +53,12 @@ const checkWebsite = async () => {
   try {
     const response = await axios.get(targetSite);
     const $ = cheerio.load(response.data);
-    const currentContent = $('body').text(); // チェックしたい部分を選択
+    
+    // 比較する特定の部分を選択（例：メインコンテンツ）
+    let currentContent = $('body').text().trim(); // メインコンテンツを選択
+
+    // 余分な空白や改行を削除
+    currentContent = currentContent.replace(/\s+/g, ' ');
 
     if (previousContent && previousContent !== currentContent) {
       console.log('Content has changed!');
@@ -69,7 +74,7 @@ const checkWebsite = async () => {
 };
 
 // 一定時間ごとにチェック
-setInterval(checkWebsite, 120000); // 120秒ごとにチェック
+setInterval(checkWebsite, 20000); // 120秒ごとにチェック
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
